@@ -3,8 +3,8 @@ package Entitati;
 public class Voluntar extends Angajat implements Comparable<Voluntar> {
     private String program;
 
-    public Voluntar(String nume, String prenume, double salariu, int varsta, String program) {
-        super(nume, prenume, salariu, varsta);
+    public Voluntar(int id, String nume, String prenume, double salariu, int varsta, String program) {
+        super(id, nume, prenume, salariu, varsta, "voluntar");
         this.program = program;
     }
 

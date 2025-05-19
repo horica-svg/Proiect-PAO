@@ -1,51 +1,67 @@
 package Entitati;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        ZooService zooService = new ZooService();
 
-        Habitat padure = new Habitat("Padure de conifere", 500);
-        Exponat urs = new Exponat("Urs brun", "ursulache", 7, padure);
-        zooService.adaugaExponat(urs);
+        // AngajatService angajatService = AngajatService.getInstance();
 
-        Veterinar veterinar = new Veterinar("Pompiliu", "Diocletian", 250000, 45, "veterinar generalist");
-        Manager manager = new Manager("Sucu", "Dan", 5600000, 57, "Mobexpert");
-        Ingrijitor ingrijitor = new Ingrijitor("Ionel", "Popescu", 20000, 30, "ursi");
+        // // Adăugăm angajati
+        // Manager manager = new Manager(2, "Maria", "Ionescu", 5000, 40, "vânzări");
+        // Ingrijitor ingrijitor = new Ingrijitor(1, "Ion", "Popescu", 3000, 30, "ursi");
+        // Veterinar veterinar = new Veterinar(3, "Andrei", "Popa", 4000, 35, "chirurgie");
+        // angajatService.create(ingrijitor);
+        // angajatService.create(manager);
+        // angajatService.create(veterinar);
 
-        zooService.adaugaAngajat(veterinar);
-        zooService.adaugaAngajat(manager);
-        zooService.adaugaAngajat(ingrijitor);
+        // // Citim toti angajatii
+        // // Obtinem toti angajatii din baza de date
+        // List<Angajat> angajati = angajatService.getAllAngajati();
 
-        System.out.println("Activitatile angajatilor:");
-        zooService.AfiseazaActivitatiAngajati();
+        // // Afisam toti angajatii
+        // System.out.println("Lista angajatilor:");
+        // for (Angajat angajat : angajati) {
+        //     System.out.println(angajat);
+        // }
 
-        System.out.println("\nSalariul total al angajatilor: " + zooService.calculeazaSalariuTotal());
+        // EvenimentService evenimentService = EvenimentService.getInstance();
+        // Eveniment eveniment = new Eveniment(1, "Concert", LocalDate.of(2023, 10, 15), "Concert de muzica clasica", 100.0);
+        // evenimentService.create(eveniment);
 
-        Vizitator vizitator1 = new Vizitator("Ion", "Popescu", "ionpopy@gmail.com");
-        Vizitator vizitator2 = new Vizitator("Costache", "Costi", "costicosti@hotmal.ro");
-        Vizitator vizitator3 = new Vizitator("Habosh", "Babosh", "Shlipton@gmail.com");
+        // List<Eveniment> evenimente = evenimentService.getEvenimente();
 
-        zooService.adaugaVizitator(vizitator1);
-        zooService.adaugaVizitator(vizitator2);
-        zooService.adaugaVizitator(vizitator3);
+        // System.out.println("Lista evenimentelor:");
+        // for (Eveniment e : evenimente) {
+        //     System.out.println(e);
+        // }
 
-        System.out.println("\nVizitatorii:");
-        zooService.AfiseazaVizitatori();
+        // HabitatService habitatService = HabitatService.getInstance();
+        // Habitat habitat = new Habitat(1, "terestru", 1000.0);
+        // Habitat habitat2 = new Habitat(2, "acvatic", 2000.0);
+        // habitatService.create(habitat);
+        // habitatService.create(habitat2);
+        // List<Habitat> habitate = habitatService.getHabitate();
+        // System.out.println("Lista habitatelor:");
+        // for (Habitat h : habitate) {
+        //     System.out.println(h);
+        // }
 
-        zooService.stergeVizitator("Habosh");
+        ExponatService exponatService = ExponatService.getInstance();
+        Exponat exponat = new Exponat(1, "Leu", "panthera", 5, 1);
+        Exponat exponat2 = new Exponat(2, "Delfin", "delphinus", 3, 2);
 
-        System.out.println("\nVizitatorii dupa stergere:\n");
-        zooService.AfiseazaVizitatori();
+        exponatService.create(exponat);
+        exponatService.create(exponat2);
 
-        Eveniment eveniment1 = new Eveniment("Ziua Ursului",LocalDate.of(2024,2,5), "O zi dedicata ursilor", 100);
-        Eveniment eveniment2 = new Eveniment("Ziua Elefantului", LocalDate.of(2023, 10, 2), "O zi dedicata elefantilor", 150);
+        List<Exponat> exponate = exponatService.getExponate();
+        System.out.println("Lista exponatelor:");
+        for (Exponat e : exponate) {
+            System.out.println(e);
+        }
 
-        zooService.adaugaEveniment(eveniment1);
-        zooService.adaugaEveniment(eveniment2);
-
-        System.out.println("\nEvenimentele:\n");
-        zooService.AfiseazaEvenimente();
+        
     }
 }

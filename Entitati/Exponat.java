@@ -1,16 +1,34 @@
 package Entitati;
 
 public class Exponat implements Comparable<Exponat> {
+    private int id;
     private String nume;
     private String specie;
     private int varsta;
-    private Habitat habitat;
+    private int habitatId;
 
-    public Exponat(String nume, String specie, int varsta, Habitat habitat) {
+    public Exponat(int id, String nume, String specie, int varsta, int habitatId) {
+        this.id = id;
         this.nume = nume;
         this.specie = specie;
         this.varsta = varsta;
-        this.habitat = habitat;
+        this.habitatId = habitatId;
+    }
+
+    public Exponat() {
+        this.id = 0;
+        this.nume = "";
+        this.specie = "";
+        this.varsta = 0;
+        this.habitatId = 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     // Getters și setters
@@ -38,12 +56,12 @@ public class Exponat implements Comparable<Exponat> {
         this.varsta = varsta;
     }
 
-    public Habitat getHabitat() {
-        return habitat;
+    public int getHabitatId() {
+        return habitatId;
     }
 
-    public void setHabitat(Habitat habitat) {
-        this.habitat = habitat;
+    public void setHabitatId(int habitatId) {
+        this.habitatId = habitatId;
     }
 
     @Override

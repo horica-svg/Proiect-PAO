@@ -3,16 +3,34 @@ package Entitati;
 import java.time.LocalDate;
 
 public class Eveniment  implements Comparable<Eveniment> {
+    private int id;
     private String numeEveniment;
     private LocalDate dataEveniment;
     private String descriereEveniment;
     private double pretBilet;
 
-    public Eveniment(String numeEveniment, LocalDate dataEveniment, String descriereEveniment, double pretBilet) {
+    public Eveniment(int id, String numeEveniment, LocalDate dataEveniment, String descriereEveniment, double pretBilet) {
+        this.id = id;
         this.numeEveniment = numeEveniment;
         this.dataEveniment = dataEveniment;
         this.descriereEveniment = descriereEveniment;
         this.pretBilet = pretBilet;
+    }
+
+    public Eveniment() {
+        this.id = 0;
+        this.numeEveniment = "";
+        this.dataEveniment = LocalDate.now();
+        this.descriereEveniment = "";
+        this.pretBilet = 0.0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNumeEveniment() {

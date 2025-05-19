@@ -4,11 +4,28 @@ public class Vizitator implements Comparable<Vizitator>{
     private String nume;
     private String prenume;
     private String email;
+    private int id;
 
-    public Vizitator(String nume, String prenume, String email) {
+    public Vizitator(int id, String nume, String prenume, String email) {
         this.nume = nume;
         this.prenume = prenume;
         this.email = email;
+        this.id = id;
+    }
+
+    public Vizitator() {
+        this.nume = "";
+        this.prenume = "";
+        this.email = "";
+        this.id = 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNume() {

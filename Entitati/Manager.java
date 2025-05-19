@@ -3,8 +3,8 @@ package Entitati;
 public class Manager extends Angajat {
     private String departament;
 
-    public Manager(String nume, String prenume, double salariu, int varsta, String departament) {
-        super(nume, prenume, salariu, varsta);
+    public Manager(int id, String nume, String prenume, double salariu, int varsta, String departament) {
+        super(id, nume, prenume, salariu, varsta, "manager");
         this.departament = departament;
     }
 

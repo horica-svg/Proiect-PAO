@@ -3,9 +3,14 @@ package Entitati;
 public class Ingrijitor extends Angajat implements Comparable<Ingrijitor> {
     private String sectie;
 
-    public Ingrijitor(String nume, String prenume, double salariu, int varsta, String sectie) {
-        super(nume, prenume, salariu, varsta);
+    public Ingrijitor(int id, String nume, String prenume, double salariu, int varsta, String sectie) {
+        super(id, nume, prenume, salariu, varsta, "ingrijitor");
         this.sectie = sectie;
+    }
+
+    public Ingrijitor(){
+        super(0, "", "", 0, 0, "ingrijitor");
+        this.sectie = "";
     }
 
     @Override

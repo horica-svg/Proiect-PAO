@@ -3,8 +3,8 @@ package Entitati;
 public class Veterinar extends Angajat {
     private String specializare;
 
-    public Veterinar(String nume, String prenume, double salariu, int varsta, String specializare) {
-        super(nume, prenume, salariu, varsta);
+    public Veterinar(int id, String nume, String prenume, double salariu, int varsta, String specializare) {
+        super(id, nume, prenume, salariu, varsta, "veterinar");
         this.specializare = specializare;
     }
 
