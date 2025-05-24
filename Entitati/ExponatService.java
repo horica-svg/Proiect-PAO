@@ -40,6 +40,7 @@ public class ExponatService extends DatabaseConnection implements CRUDService<Ex
             if (generatedKeys.next()) {
                 exponat.setId(generatedKeys.getInt(1)); // Setăm id-ul în obiectul Java
             }
+            CSVFileLogger.getInstance().logAction("create_exponat");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,6 +88,8 @@ public class ExponatService extends DatabaseConnection implements CRUDService<Ex
             stmt.setInt(4, exponat.getHabitatId()); // Cheia străină către tabela Habitat
             stmt.setInt(5, exponat.getId());
             stmt.executeUpdate();
+
+            CSVFileLogger.getInstance().logAction("update_exponat");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,6 +106,8 @@ public class ExponatService extends DatabaseConnection implements CRUDService<Ex
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
+
+            CSVFileLogger.getInstance().logAction("delete_exponat");
         } catch (SQLException e) {
             e.printStackTrace();
         }

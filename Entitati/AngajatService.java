@@ -63,6 +63,8 @@ public class AngajatService extends DatabaseConnection implements CRUDService<An
                     stmt2.executeUpdate();
                 }
             }
+            // Logăm acțiunea
+            CSVFileLogger.getInstance().logAction("create_angajat");
         }
     } catch (SQLException e) {
         System.err.println("Eroare la crearea angajatului: " + e.getMessage());
@@ -192,6 +194,8 @@ public class AngajatService extends DatabaseConnection implements CRUDService<An
             stmt.setString(5, angajat.getTip());
             stmt.setInt(6, angajat.getId());
             stmt.executeUpdate();
+
+            CSVFileLogger.getInstance().logAction("update_angajat");
         } catch (SQLException e) {
             System.err.println("Eroare la actualizarea angajatului: " + e.getMessage());
             e.printStackTrace();
@@ -209,6 +213,8 @@ public class AngajatService extends DatabaseConnection implements CRUDService<An
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
+
+            CSVFileLogger.getInstance().logAction("delete_angajat");
         } catch (SQLException e) {
             System.err.println("Eroare la ștergerea angajatului: " + e.getMessage());
             e.printStackTrace();

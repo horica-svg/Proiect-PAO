@@ -38,6 +38,7 @@ public class HabitatService extends DatabaseConnection implements CRUDService<Ha
             if (generatedKeys.next()) {
                 habitat.setId(generatedKeys.getInt(1)); // Setăm id-ul în obiectul Java
             }
+            CSVFileLogger.getInstance().logAction("create_habitat");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,6 +71,8 @@ public class HabitatService extends DatabaseConnection implements CRUDService<Ha
             stmt.setString(2, habitat.getTip());
             stmt.setInt(3, habitat.getId());
             stmt.executeUpdate();
+
+            CSVFileLogger.getInstance().logAction("update_habitat");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -81,6 +84,8 @@ public class HabitatService extends DatabaseConnection implements CRUDService<Ha
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
+
+            CSVFileLogger.getInstance().logAction("delete_habitat");
         } catch (SQLException e) {
             e.printStackTrace();
         }

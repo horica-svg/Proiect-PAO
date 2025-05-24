@@ -40,6 +40,7 @@ public class EvenimentService extends DatabaseConnection implements CRUDService<
             if (generatedKeys.next()) {
                 eveniment.setId(generatedKeys.getInt(1)); // Setăm id-ul în obiectul Java
             }
+            CSVFileLogger.getInstance().logAction("create_eveniment");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,6 +77,8 @@ public class EvenimentService extends DatabaseConnection implements CRUDService<
             stmt.setDouble(4, eveniment.getPretBilet());
             stmt.setInt(5, eveniment.getId());
             stmt.executeUpdate();
+
+            CSVFileLogger.getInstance().logAction("update_eveniment");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,6 +90,8 @@ public class EvenimentService extends DatabaseConnection implements CRUDService<
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
+
+            CSVFileLogger.getInstance().logAction("delete_eveniment");
         } catch (SQLException e) {
             e.printStackTrace();
         }
