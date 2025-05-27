@@ -1,7 +1,13 @@
-package Entitati;
+package Services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Entitati.CRUDService;
+import Entitati.Habitat;
+import Utils.CSVFileLogger;
+import Utils.DatabaseConnection;
+
 import java.sql.*;
 
 public class HabitatService extends DatabaseConnection implements CRUDService<Habitat> {
@@ -97,10 +103,11 @@ public class HabitatService extends DatabaseConnection implements CRUDService<Ha
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id"));
-                System.out.println("Suprafata: " + rs.getDouble("arie"));
-                System.out.println("Tipul habitatului: " + rs.getString("tip"));
-                System.out.println("-----------------------------");
+                habitate.add(new Habitat(
+                    rs.getInt("id"),
+                    rs.getString("tip"),
+                    rs.getDouble("arie")
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,8 +1,22 @@
-package Entitati;
+package Services;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import Entitati.Angajat;
+import Entitati.CRUDService;
+import Entitati.Ingrijitor;
+import Entitati.Manager;
+import Entitati.Veterinar;
+import Utils.CSVFileLogger;
+import Utils.DatabaseConnection;
+
+
+/**
+ * Această clasă nu mai este folosita din cauza unor probleme de implementare.
+ */
+
 
 public class AngajatService extends DatabaseConnection implements CRUDService<Angajat> {
     private static AngajatService instance;

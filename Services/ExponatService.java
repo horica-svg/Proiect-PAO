@@ -1,8 +1,13 @@
-package Entitati;
+package Services;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import Entitati.CRUDService;
+import Entitati.Exponat;
+import Utils.CSVFileLogger;
+import Utils.DatabaseConnection;
 
 public class ExponatService extends DatabaseConnection implements CRUDService<Exponat> {
     private static ExponatService instance;
@@ -33,6 +38,7 @@ public class ExponatService extends DatabaseConnection implements CRUDService<Ex
             stmt.setString(2, exponat.getSpecie());
             stmt.setInt(3, exponat.getVarsta());
             stmt.setInt(4, exponat.getHabitatId()); // Cheia străină către tabela Habitat
+            // stmt.setInt(5, exponat.getId());
             stmt.executeUpdate();
 
             // Recuperăm id-ul generat de baza de date

@@ -1,8 +1,13 @@
-package Entitati;
+package Services;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import Entitati.CRUDService;
+import Entitati.Eveniment;
+import Utils.CSVFileLogger;
+import Utils.DatabaseConnection;
 
 public class EvenimentService extends DatabaseConnection implements CRUDService<Eveniment> {
     private static EvenimentService instance;
@@ -103,12 +108,13 @@ public class EvenimentService extends DatabaseConnection implements CRUDService<
         try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id"));
-                System.out.println("Nume Eveniment: " + rs.getString("numeEveniment"));
-                System.out.println("Data Eveniment: " + rs.getDate("data"));
-                System.out.println("Descriere Eveniment: " + rs.getString("descriere"));
-                System.out.println("Pret Bilet: " + rs.getDouble("pretBilet"));
-                System.out.println("-----------------------------");
+                evenimente.add(new Eveniment(
+                    rs.getInt("id"),
+                    rs.getString("numeEveniment"),
+                    rs.getDate("data").toLocalDate(),
+                    rs.getString("descriere"),
+                    rs.getDouble("pretBilet")
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();

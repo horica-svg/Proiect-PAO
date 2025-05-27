@@ -1,9 +1,16 @@
-package Entitati;
+package Services;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import Entitati.CRUDService;
+import Entitati.Sponsor;
+import Utils.CSVFileLogger;
+import Utils.DatabaseConnection;
 
 public class SponsorService extends DatabaseConnection implements CRUDService<Sponsor> {
-    public SponsorService() {
+    private SponsorService() {
         super();
     }
 
@@ -80,5 +87,23 @@ public class SponsorService extends DatabaseConnection implements CRUDService<Sp
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Sponsor> getSponsori() {
+        List<Sponsor> sponsori = new ArrayList<>();
+        String sql = "SELECT * FROM Sponsor";
+        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                sponsori.add(new Sponsor(
+                    rs.getInt("id"),
+                    rs.getString("nume"),
+                    rs.getDouble("sumaDonata")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sponsori;
     }
 }
